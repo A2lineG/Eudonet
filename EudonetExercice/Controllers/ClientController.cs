@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace EudonetExercice.Controllers
 {
     [ApiController]
-    [Route("api/clients")]
+    [Route("clients")]
     public class ClientController : ControllerBase
     {
         private readonly IClientRepository _clientRepo;
@@ -60,6 +60,5 @@ namespace EudonetExercice.Controllers
                 return Conflict(ex.Message);
             }           
         }
-
     }
 }

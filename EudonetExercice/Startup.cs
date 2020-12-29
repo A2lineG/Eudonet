@@ -26,6 +26,14 @@ namespace EudonetExercice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Cors
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddSingleton<IClientRepository, ClientRepository>();
             services.AddControllers();
         }
@@ -41,6 +49,9 @@ namespace EudonetExercice
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // Enable Cors
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 
